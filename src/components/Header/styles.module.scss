@@ -23,13 +23,18 @@
             border-radius: 0.5rem;
             margin-left: 1rem;
             background: transparent;
-            font-size: 1.6rem;
-            color: white;
             transition: all .3s;
+
+            a {
+                font-size: 1.6rem;
+                text-decoration: none;
+                color: white;
+            }
 
             &:hover {
                 border: 1px solid var(--pink);
             }
+
         }
     }
 }
