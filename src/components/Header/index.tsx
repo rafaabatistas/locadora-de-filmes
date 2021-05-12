@@ -13,7 +13,7 @@ export function Header() {
                     </Link>
                 </button>
                 <button>
-                    <Link href="/editar.tsx"> 
+                    <Link href="./editar"> 
                         <a>Editar </a> 
                     </Link>
                 </button>
