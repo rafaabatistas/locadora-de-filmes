@@ -1,7 +1,7 @@
 .containerHeader {
     width: 100vw;
     height: 90px;
-    padding: 4rem;
+    padding: 0 4rem;
     align-items: center;
     justify-content: space-between;
     display: flex;
@@ -22,16 +22,15 @@
             border-style: none;
             border-radius: 0.5rem;
             margin-left: 1rem;
+            font-size: 1.6rem;
+            text-decoration: none;
+            outline: none;
+            color: white;
             background: transparent;
             transition: all .3s;
 
-            a {
-                font-size: 1.6rem;
-                text-decoration: none;
-                color: white;
-            }
-
             &:hover {
+                text-shadow: 0px 0px 0.2rem white;
                 border: 1px solid var(--pink);
             }
 
