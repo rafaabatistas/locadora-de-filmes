@@ -15,3 +15,24 @@ export default function Home(props) {
     </main>
     )
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data } = await api.get('locadora?_order=desc');
+
+  const filmes = data.map(filme => {
+    return { 
+      titulo: filme.titulo,
+      genero: filme.genero,
+      lancamento: filme.lacamento,
+      idioma: filme.idioma,
+      diretor: filme.diretor,
+      sinopse: filme.sinopse,
+    }
+  })
+  
+  return {
+    props: {
+      locadora: data,
+    }
+  }
+}
