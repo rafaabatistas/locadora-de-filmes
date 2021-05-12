@@ -1,6 +1,23 @@
 import styles from '../styles/home.module.scss';
 
-export default function Home(props) {
+import { format } from 'date-fns';
+import { GetServerSideProps } from 'next';
+import { api } from '../services/api';
+
+type Filmes = {
+  titulo: string;
+  genero: string;
+  sinopse: string;
+  lancamento: string;
+  idioma: string;
+  diretor: string;
+}
+
+type HomeProps = {
+  filme: Filmes[];
+}
+
+export default function Home(props: HomeProps) {
   return (
     <main className={styles.containerHome}>
       <header>
