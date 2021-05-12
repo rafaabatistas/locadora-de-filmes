@@ -1,0 +1,56 @@
+.containerHome {
+    width: 100vw;
+    height: 100%;
+    padding: 2rem 4rem;
+
+
+    header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 6rem;
+
+        h1 {
+            color: black;
+            font-family: arial;
+        }
+    }
+
+    .containerFilmes {
+        width: 100%;
+        height: 100%;
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .boxFilmes {
+        width: 275px;
+        height: 300px;
+        flex: 1 1 250px;
+        min-width: 230px;
+        max-width: 275px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        padding: 0 1.5rem;
+        margin: 1.5rem;
+        border-radius: 0.5rem;
+        background: var(--purple);
+
+        h2 {
+            color: white;
+            margin: 1rem;
+        }
+
+        p {
+            font-size: 1.6rem;
+            color: white;
+            text-align: justify;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
