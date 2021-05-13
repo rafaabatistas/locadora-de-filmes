@@ -2,6 +2,8 @@
     width: 100vw;
     height: 100%;
     padding: 2rem 4rem;
+    font-family: Newsreader, sans-serif;
+
 
 
     header {
@@ -11,8 +13,9 @@
         height: 6rem;
 
         h1 {
-            color: black;
-            font-family: arial;
+            color: var(--pink);
+            font-family: Newsreader, sans-serif;
+            font-weight: 500;
         }
     }
 
@@ -35,14 +38,34 @@
         align-items: center;
         justify-content: flex-start;
         flex-direction: column;
-        padding: 0 1.5rem;
+        cursor: pointer;
         margin: 1.5rem;
-        border-radius: 0.5rem;
-        background: var(--purple);
+        border-radius: 5%;
+        transition: all .3s ease-in-out;
+
+        .boxImage {
+            width: 275px;
+            height: 210px;
+        }
+
+        .boxInfo {
+            text-align: center;
+            padding: 1rem 1.2rem;
+            border-radius: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5%;
+        }
 
         h2 {
+            font-weight: 500;
             color: white;
-            margin: 1rem;
+            margin: 0 1rem;
         }
 
         p {
