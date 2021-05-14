@@ -1,0 +1,54 @@
+.boxFilmes {
+    width: 275px;
+    height: 300px;
+    flex: 1 1 250px;
+    min-width: 230px;
+    max-width: 275px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    margin: 1.5rem;
+    border-radius: 5%;
+    font-family: Newsreader, sans-serif;
+    font-weight: 500;
+    background: var(--purple);
+    transition: all .3s ease-in-out;
+
+    h2 {
+        font-weight: 500;
+        color: white;
+        align-self: center;
+        margin: 1rem 0;
+    }
+
+    p {
+        font-size: 1.6rem;
+        color: white;
+        margin: 0.5rem 0;
+    }
+
+    &:hover {
+        box-shadow: 5px 5px 5px 2px rgb(17, 16, 16);
+    }
+
+    .boxAdicionar {
+        width: 100%;
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .boxIcon {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--pink);
+        }
+    }
+}
