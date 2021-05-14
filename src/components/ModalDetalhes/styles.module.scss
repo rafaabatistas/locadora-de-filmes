@@ -1,0 +1,61 @@
+.boxModalClick {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.boxModal {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 0.5rem;
+    position: fixed;
+    padding: 2rem;
+    width: 500px;
+    height: auto;
+    z-index: 2;
+    transition: ease-in-out .3s;
+
+
+    .boxButtonFechar {
+        height: 3rem;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .buttonFechar {
+        width: 3rem;
+        height: 100%;
+        border-style: none;
+        font-size: 1.8rem;
+        background: transparent;
+    }
+
+    .boxDetalhes {
+        table {
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            font-size: 1.6rem;
+            text-align: justify;
+    
+            tbody {                
+                td {
+                    padding: 1rem;
+                    border-bottom: 2px solid rgba(97, 97, 97, 0.2);
+
+                    p {
+                        word-wrap: break-word;
+                    }
+                }
+            }
+    
+        }
+    }
+}
+
