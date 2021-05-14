@@ -4,6 +4,8 @@ import { Titulo } from '../components/Titulo';
 import { format } from 'date-fns';
 import { GetServerSideProps } from 'next';
 import { api } from '../services/api';
+import { Modal } from '../components/ModalDetalhes';
+import { useState } from 'react';
 
 type Filmes = {
   titulo: string;
@@ -12,30 +14,50 @@ type Filmes = {
   lancamento: string;
   idioma: string;
   diretor: string;
+  url: string;
 }
 
 type HomeProps = {
-  filme: Filmes[];
+  filmes: Filmes[];
 }
 
-export default function Home(props: HomeProps) {
+export default function Home({ filmes }: HomeProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState({
+    titulo: '',
+    genero: '',
+    sinopse: '',
+    lancamento: '',
+    idioma: '',
+    diretor: '',
+    url: ''
+  });
+
   return (
     <main className={styles.containerHome}>
       <Titulo>Todos os filmes locados</Titulo>
 
       <section className={styles.containerFilmes}>
-        {props.map(filme => {
+
+        {filmes.map((filme, index) => {
           return (
-            <div className={styles.boxFilmes}>
-              <h2>{filme.titulo}</h2>
-              <p>{filme.sinopse}</p>
+            <div key={index} className={styles.boxFilmes} onClick={() => {
+              setIsOpen(true);
+              setSelectedMovie(filme);
+            }} >
+              <div className={styles.boxImage}>
+                <img src={filme.url} alt="Capa do filme" />
+              </div>
+              <div className={styles.boxInfo}>
+                <h2>{filme.titulo}</h2>
+                <p>Diretor: {filme.diretor}</p>
+              </div>
             </div>
           )
         })}
-        <div className={styles.boxFilmes}>
-          <h2>Interestrelar </h2>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod beatae labore ipsum quae dolorum doloremque eius natus, praesentium voluptates hic error explicabo. Voluptatum aperiam tempora nisi nemo voluptas debitis consequatur! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde, ex. lorem fa-rotate-27 Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis neque exercitationem eius eveniet quia ex nulla quisquam rem praesentium assumenda!</p>
-        </div>
+
+        <Modal filme={selectedMovie} isOpen={isOpen} handleClose={() => setIsOpen(!open)} />
+
       </section>
     </main>
     )
@@ -48,16 +70,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return { 
       titulo: filme.titulo,
       genero: filme.genero,
-      lancamento: filme.lacamento,
+      lancamento: format(new Date(filme.lacamento), 'yyy'),
       idioma: filme.idioma,
       diretor: filme.diretor,
       sinopse: filme.sinopse,
+      url: filme.url
     }
   })
   
   return {
     props: {
-      locadora: data,
+      filmes
     }
   }
 }
