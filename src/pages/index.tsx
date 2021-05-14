@@ -1,5 +1,6 @@
 import styles from '../styles/home.module.scss';
 
+import { Titulo } from '../components/Titulo';
 import { format } from 'date-fns';
 import { GetServerSideProps } from 'next';
 import { api } from '../services/api';
@@ -20,9 +21,8 @@ type HomeProps = {
 export default function Home(props: HomeProps) {
   return (
     <main className={styles.containerHome}>
-      <header>
-        <h1>Todos os filmes locados</h1>
-      </header>
+      <Titulo>Todos os filmes locados</Titulo>
+
       <section className={styles.containerFilmes}>
         {props.map(filme => {
           return (
