@@ -1,0 +1,12 @@
+.containerHeader {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 6rem;
+
+    h1 {
+        color: var(--pink);
+        font-family: Newsreader, sans-serif;
+        font-weight: 500;
+    }
+}
