@@ -1,11 +1,12 @@
 import styles from '../styles/editar.module.scss';
 
+import { ModalEdit } from '../components/ModalEdit';
 import { ButtonDeletar } from '../components/ButtonDeletar';
 import { ButtonEditar } from '../components/ButtonEditar';
 import { Titulo } from '../components/Titulo';
 import { GetServerSideProps } from 'next';
 import { api } from '../services/api';
-// import { useState } from 'react';
+import { useState } from 'react';
 import { BoxAdicionar } from '../components/BoxAdicionar';
 
 type Filmes = {
@@ -23,7 +24,16 @@ type HomeProps = {
 }
 
 export default function Home({ filmes }: HomeProps) {
-
+const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
+const [selectedMovie, setSelectedMovie] = useState({
+  titulo: '',
+  genero: '',
+  sinopse: '',
+  lancamento: '',
+  idioma: '',
+  diretor: '',
+  url: ''
+});
 
   return (
     <main className={styles.containerHome}>
@@ -33,9 +43,15 @@ export default function Home({ filmes }: HomeProps) {
         {filmes.map((filme, index) => {
           return (
               <section key={index} className={styles.boxFilmes}>
-                <div className={styles.boxButtons}>
-                  <ButtonEditar />
-                  <ButtonDeletar />
+                <div className={styles.boxButtons} >
+                  <span onClick={() => {
+                    setIsOpenModalEdit(true)
+                    setSelectedMovie(filme)}}>
+                    <ButtonEditar />
+                  </span>
+                  <span>
+                    <ButtonDeletar />
+                  </span>
                 </div>
                 <h2>{filme.titulo}</h2>
                 <p><strong>Diretor:</strong> {filme.diretor}</p>
@@ -47,6 +63,7 @@ export default function Home({ filmes }: HomeProps) {
               </section>
           )
         })}
+        <ModalEdit filme={selectedMovie} isOpenModalEdit={isOpenModalEdit} handleClose={() => setIsOpenModalEdit(!open)}/>
       </section>
     </main>
     )
