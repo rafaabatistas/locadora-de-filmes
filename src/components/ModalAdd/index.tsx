@@ -44,12 +44,12 @@ export function ModalAdd( { isOpen, handleClose }: Modal ) {
                         <span>Imagem: </span>
                         <input type="text" name="image" id="image" />
                     </div>
-                    <div className={styles.boxInput}>
+                    <div className={styles.boxInputTextArea}>
                         <span>Sinopse: </span>
                         <textarea id="sinopse" name="sinopse" />
                     </div>
                     <div className={styles.boxButtonCriar}>
-                        <button className={styles.buttonCriar}>Criar</button>
+                        <button className={styles.buttonCriar}>Adicionar</button>
                     </div>
                 </form>
             </section>
