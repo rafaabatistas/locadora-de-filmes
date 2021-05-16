@@ -1,0 +1,70 @@
+.contentBackground {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.boxModal {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 440px;
+    min-width: 200px;
+    height: auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 5%;
+    font-family: Newsreader, sans-serif;
+    text-align: center;
+
+    h2 {
+        margin: 1rem 2rem;
+        font-weight: 500;
+    }
+
+    p {
+        margin: 2rem;
+        font-size: 2rem;
+        font-weight: 500;
+    }
+
+    button {
+        width: 9rem;
+        height: 4rem;
+        border-style: none;
+        background: transparent;
+        border-radius: 0.5rem;
+        border: 1px solid var(--pink);
+        font-family: Newsreader, sans-serif;
+        font-weight: 500;
+        font-size: 1.8rem;
+        color: var(--pink);
+        transition: all .3s;
+        
+        &:hover {
+            background: var(--purple);
+            color: white;
+        }
+    }
+
+    .boxButtonFechar {
+        height: 3rem;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        .buttonFechar {
+            width: 3rem;
+            height: 100%;
+            border-style: none;
+            font-size: 1.8rem;
+            background: transparent;
+        }
+    }
+}
