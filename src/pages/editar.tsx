@@ -73,7 +73,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await api.get('locadora?_order=desc');
 
   const filmes = data.map(filme => {
-    return { 
+    return {
+      id: filme.id, 
       titulo: filme.titulo,
       genero: filme.genero,
       lancamento: filme.lacamento,
