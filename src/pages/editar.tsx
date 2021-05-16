@@ -9,6 +9,7 @@ import { GetServerSideProps } from 'next';
 import { api } from '../services/api';
 import { useState } from 'react';
 import { BoxAdicionar } from '../components/BoxAdicionar';
+import { BoxEditar } from '../components/BoxEditar';
 
 type Filmes = {
   titulo: string;
@@ -44,25 +45,20 @@ const [selectedMovie, setSelectedMovie] = useState({
         <BoxAdicionar />
         {filmes.map((filme, index) => {
           return (
-              <section key={index} className={styles.boxFilmes}>
-                <div className={styles.boxButtons} >
-                  <span onClick={() => {
-                    setIsOpenModalEdit(true)
-                    setSelectedMovie(filme)}}>
-                    <ButtonEditar />
-                  </span>
-                  <span>
-                    <ButtonDeletar />
-                  </span>
+            <section className={styles.boxEditar}>
+              <BoxEditar filme={filme} index={index}>
+                <div className={styles.boxButtonsEdit} onClick={() => {
+                  setIsOpenModalEdit(true)
+                  setSelectedMovie(filme)}}>
+                  <ButtonEditar />
                 </div>
-                <h2>{filme.titulo}</h2>
-                <p><strong>Diretor:</strong> {filme.diretor}</p>
-                <p><strong>Gênero:</strong> {filme.genero}</p>
-                <p><strong>Lançamento:</strong> {filme.lancamento}</p>
-                <p><strong>Idioma:</strong> {filme.idioma}</p>
-                <p><strong>Imagem:</strong> {filme.url}</p>
-                <p><strong>Sinopse:</strong> {filme.sinopse}</p>
-              </section>
+                <div className={styles.boxButtonsDelete} onClick={() => {
+                  setIsOpenModalDelete(true);
+                }}>
+                  <ButtonDeletar />
+                </div>
+              </BoxEditar>
+            </section>
           )
         })}
         <ModalEdit filme={selectedMovie} isOpenModalEdit={isOpenModalEdit} handleClose={() => setIsOpenModalEdit(!open)}/>
