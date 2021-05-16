@@ -1,5 +1,6 @@
 import styles from '../styles/editar.module.scss';
 
+import { ModalDelete } from '../components/ModalDelete';
 import { ModalEdit } from '../components/ModalEdit';
 import { ButtonDeletar } from '../components/ButtonDeletar';
 import { ButtonEditar } from '../components/ButtonEditar';
@@ -25,6 +26,7 @@ type HomeProps = {
 
 export default function Home({ filmes }: HomeProps) {
 const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
+const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
 const [selectedMovie, setSelectedMovie] = useState({
   titulo: '',
   genero: '',
@@ -64,6 +66,7 @@ const [selectedMovie, setSelectedMovie] = useState({
           )
         })}
         <ModalEdit filme={selectedMovie} isOpenModalEdit={isOpenModalEdit} handleClose={() => setIsOpenModalEdit(!open)}/>
+        <ModalDelete filme={selectedMovie} isOpenModalDelete={isOpenModalDelete} handleClose={() => setIsOpenModalDelete(!open)}/>
       </section>
     </main>
     )
