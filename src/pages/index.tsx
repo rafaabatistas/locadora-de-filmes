@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return { 
       titulo: filme.titulo,
       genero: filme.genero,
-      lancamento: format(new Date(filme.lacamento), 'yyy'),
+      lancamento: format(new Date(filme.lancamento), 'yyy'),
       idioma: filme.idioma,
       diretor: filme.diretor,
       sinopse: filme.sinopse,
