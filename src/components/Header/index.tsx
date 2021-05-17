@@ -12,7 +12,7 @@ export function Header() {
                         <button>Todos </button>
                     </a> 
                 </Link>
-                <Link href="./editar"> 
+                <Link href="/editar"> 
                     <a>
                         <button>Editar</button> 
                     </a> 
