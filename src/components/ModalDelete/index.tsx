@@ -1,5 +1,7 @@
-import { useState } from 'react';
 import styles from './styles.module.scss';
+
+import { api } from '../../services/api';
+import React from 'react';
 
 type DeleteProps = {
     isOpenModalDelete: boolean;
@@ -8,7 +10,19 @@ type DeleteProps = {
 }
 
 export function ModalDelete({ filme, handleClose, isOpenModalDelete }: DeleteProps) {
-    const [deleteFilme, setDeleteFilme] = useState([])
+
+     function removerFilme(id) {
+       const res = api.delete(`/locadora/${id}`)
+            .then((res) => {
+                console.log(res.status);
+                handleClose();
+                window.location.reload();
+            }).catch(err => { 
+                console.log(err);
+                handleClose();
+            });
+        console.log(res)
+        }
 
     return(
         <>
@@ -23,11 +37,10 @@ export function ModalDelete({ filme, handleClose, isOpenModalDelete }: DeletePro
                         <img src="./close.svg" alt="Botão de fechar" />
                     </button>
                 </div>
-                <h2>Quer mesmo deletar o filme: </h2>
+                <h2>Quer mesmo deletar o filme</h2>
                 <p>{filme.titulo}</p>
-                <button>Deletar</button> 
+                <button type="button" onClick={() => removerFilme(filme.id)}>Deletar</button> 
             </section>
         </>
-
     )
 }
