@@ -1,0 +1,20 @@
+.boxInput {
+    display: flex;
+    margin: 1rem;
+    height: 2rem;
+    font-size: 1.6rem;
+
+    span {
+        margin-right: 1rem;
+    }
+
+    input {
+        border-style: none;
+        outline: none;
+        border-bottom: 1px solid var(--pink);
+        font-family: Newsreader, sans-serif;
+        font-weight: 500;
+        font-size: 1.6rem;
+        width: 100%;
+    }
+}
