@@ -42,7 +42,7 @@ const [selectedMovie, setSelectedMovie] = useState({
     <main className={styles.containerHome}>
       <Titulo>Editar os filmes locados</Titulo>
       <section className={styles.containerFilmes}>
-        <BoxAdicionar />
+        <BoxAdicionar list={filmes}/>
         {filmes.map((filme, index) => {
           return (
             <section className={styles.boxEditar} key={index}>
