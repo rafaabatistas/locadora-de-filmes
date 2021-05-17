@@ -1,4 +1,11 @@
+import { api } from '../../services/api';
+import { useState, useEffect } from 'react';
+
+import { InputText } from '../InputsTexts';
+import { InputTextArea } from '../InputsTextArea';
+
 import styles from './styles.module.scss';
+import { InputDate } from '../InputDate';
 
 type Modal = {
     isOpenModalEdit: boolean;
@@ -6,7 +13,52 @@ type Modal = {
     filme: any;
 }
 
+type Edit = {
+    id: number;
+    titulo: string;
+    genero: string;
+    sinopse: string;
+    lancamento: string;
+    idioma: string;
+    diretor: string;
+    url: string;
+}
+
+type EditProps = {
+    id: number;
+    dados: Edit;
+}
+
 export function ModalEdit( { isOpenModalEdit, handleClose, filme }: Modal ) {
+    const [selectedEditMovie, setSelectedEditMovie] = useState({
+        id: filme.id,
+        titulo: filme.titulo,
+        genero: filme.genero,
+        sinopse: filme.sinopse,
+        lancamento: filme.lancamento,
+        idioma: filme.idioma,
+        diretor: filme.diretor,
+        url: filme.url
+      });
+
+      useEffect(() => {
+        setSelectedEditMovie(filme);
+      }, [filme])
+
+
+     function EditarFilme(id, dados) {
+        const res = api.put(`/locadora/${id}/`, {...dados})
+            .then((res) => {
+                console.log(res.status);
+                handleClose();
+                window.location.reload();
+            }).catch((err) => {
+                console.log(err)
+                handleClose();
+            })
+            console.log(res);
+        }   
+
     return (
         <>
             <section className={styles.contentBackground} 
@@ -21,37 +73,56 @@ export function ModalEdit( { isOpenModalEdit, handleClose, filme }: Modal ) {
                 </div>
                 <h2>Editar</h2>
                 <form>
-                    <div className={styles.boxInput}>
-                        <span>Título: </span>
-                        <input type="text" name="titulo" id="titulo" value={filme.titulo} />
-                    </div>
-                    <div className={styles.boxInput}>
-                        <span>Gênero: </span>
-                        <input type="text" name="genero" id="genero" value={filme.genero} />
-                    </div>
-                    <div className={styles.boxInput}>
-                        <span>Lançamento: </span>
-                        <input type="text" name="lancamento" id="lancamento" value={filme.lancamento} />
-                    </div>
-                    <div className={styles.boxInput}>
-                        <span>Idioma: </span>
-                        <input type="text" name="idioma" id="idioma" value={filme.idioma} />
-                    </div>
-                    <div className={styles.boxInput}>
-                        <span>Diretor: </span>
-                        <input type="text" name="diretor" id="diretor" value={filme.diretor} />
-                    </div>
-                    <div className={styles.boxInput}>
-                        <span>Imagem: </span>
-                        <input type="text" name="image" id="image" value={filme.url} />
-                    </div>
-                    <div className={styles.boxInputTextArea}>
-                        <span>Sinopse: </span>
-                        <textarea id="sinopse" name="sinopse" value={filme.sinopse} />
-                    </div>
+                    <InputText 
+                        children={'Título'}
+                        name='titulo'
+                        value={selectedEditMovie.titulo}
+                        inputHandler={(e) => {setSelectedEditMovie({...selectedEditMovie, ['titulo']: e})}}
+                    />
+                    <InputText 
+                        children={'Gênero'}
+                        name='genero'
+                        value={selectedEditMovie.genero}
+                        inputHandler={(e) => {setSelectedEditMovie({...selectedEditMovie, ['genero']: e})}}
+                    />
+                    <InputDate 
+                        children={'Lançamento'}
+                        name='lancamento'
+                        value={selectedEditMovie.lancamento}
+                        inputHandler={(e) => {setSelectedEditMovie({...selectedEditMovie, ['lancamento']: e})}}
+                    />
+                    <InputText 
+                        children={'Idioma'}
+                        name='idioma'
+                        value={selectedEditMovie.idioma}
+                        inputHandler={(e) => {setSelectedEditMovie({...selectedEditMovie, ['idioma']: e})}}
+                    />
+                    <InputText 
+                        children={'Diretor'}
+                        name='diretor'
+                        value={selectedEditMovie.diretor}
+                        inputHandler={(e) => {setSelectedEditMovie({...selectedEditMovie, ['diretor']: e})}}
+                    />
+                    <InputText 
+                        children={'URL'}
+                        name='url'
+                        value={selectedEditMovie.url}
+                        inputHandler={(e) => {setSelectedEditMovie({...selectedEditMovie, ['url']: e})}}
+                    />
+                    <InputTextArea 
+                        children={'Sinopse'}
+                        name={'sinopse'}
+                        value={selectedEditMovie.sinopse}
+                        inputHandler={(e) => {setSelectedEditMovie({...selectedEditMovie, ['sinopse']: e})}}
+                    />
                     <div className={styles.boxButtonCriar}>
-                        <button className={styles.buttonCriar}>Confimar</button>
-                    </div>
+                        <button 
+                            className={styles.buttonCriar} 
+                            type="button" 
+                            onClick={() => {
+                                EditarFilme(filme.id, selectedEditMovie)
+                        }}>Confimar</button>
+                    </div> 
                 </form>
             </section>
         </>
