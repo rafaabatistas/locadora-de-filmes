@@ -54,6 +54,7 @@ const [selectedMovie, setSelectedMovie] = useState({
                 </div>
                 <div className={styles.boxButtonsDelete} onClick={() => {
                   setIsOpenModalDelete(true);
+                  setSelectedMovie(filme)
                 }}>
                   <ButtonDeletar />
                 </div>
