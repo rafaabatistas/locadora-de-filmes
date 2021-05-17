@@ -45,7 +45,7 @@ const [selectedMovie, setSelectedMovie] = useState({
         <BoxAdicionar />
         {filmes.map((filme, index) => {
           return (
-            <section className={styles.boxEditar}>
+            <section className={styles.boxEditar} key={index}>
               <BoxEditar filme={filme} index={index}>
                 <div className={styles.boxButtonsEdit} onClick={() => {
                   setIsOpenModalEdit(true)
