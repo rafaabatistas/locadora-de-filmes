@@ -77,7 +77,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       id: filme.id, 
       titulo: filme.titulo,
       genero: filme.genero,
-      lancamento: filme.lacamento,
+      lancamento: filme.lancamento,
       idioma: filme.idioma,
       diretor: filme.diretor,
       sinopse: filme.sinopse,
