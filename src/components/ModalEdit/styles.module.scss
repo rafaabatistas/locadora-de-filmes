@@ -21,6 +21,9 @@
     font-family: Newsreader, sans-serif;
     font-weight: 500;
     
+    form {
+        height: 100%;
+    }
 
     .boxButtonCriar {
         width: 100%;
@@ -69,5 +72,27 @@
             font-size: 1.8rem;
             background: transparent;
         }
+    }
+}
+
+@media (max-width: 515px) {
+    
+    .boxModal {
+        top: 100px;
+        width: 400px;
+        height: 500px;
+        margin: 0 auto;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    .boxModal {
+        top: 35px;
+        width: 335px;
+        height: 580px;
+        margin: 0 auto;
+        overflow-y: scroll;
     }
 }

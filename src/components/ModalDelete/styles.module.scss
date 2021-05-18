@@ -68,3 +68,21 @@
         }
     }
 }
+
+@media (max-width: 515px) {
+    
+    .boxModal {
+        top: 200px;
+        width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    .boxModal {
+        top: 200px;
+        width: 335px;
+        margin: 0 auto;
+    }
+}

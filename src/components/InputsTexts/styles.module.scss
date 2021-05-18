@@ -1,5 +1,6 @@
 .boxInput {
     display: flex;
+    align-items: center;
     margin: 1rem;
     height: 2rem;
     font-size: 1.6rem;
@@ -16,5 +17,21 @@
         font-weight: 500;
         font-size: 1.6rem;
         width: 100%;
+    }
+}
+
+
+@media (max-width: 515px) {
+    
+    .boxInput {
+        height: 3rem;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    
+    .boxInput {
+        height: 4rem;
     }
 }

@@ -1,6 +1,7 @@
 .boxInputTextArea {
     display: flex;
-    margin: 1rem;
+    align-items: center;
+    margin: 4rem 1rem;
     height: 2rem;
     font-size: 1.6rem;
 
@@ -15,5 +16,22 @@
         font-size: 1.6rem;
         width: 100%;
         resize: none;
+    }
+}
+
+
+@media (max-width: 515px) {
+    
+    .boxInputTextArea {
+        margin: 3rem 0rem;
+        height: 3rem;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    
+    .boxInputTextArea {
+        height: 4rem;
     }
 }
