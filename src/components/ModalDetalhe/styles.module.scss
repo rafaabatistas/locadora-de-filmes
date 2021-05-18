@@ -14,9 +14,12 @@
     background-color: white;
     border-radius: 5%;
     position: fixed;
+    top: 100px;
     padding: 2rem;
     width: 500px;
     height: auto;
+    max-height: 560px;
+    overflow-y: scroll;
     z-index: 2;
     transition: ease-in-out .3s;
 
@@ -51,6 +54,17 @@
 
                     p {
                         word-break: break-word;
+                    }
+
+                    a {
+                        font-size: 1.6rem;
+                        color: var(--purple);
+                        text-decoration: none;
+                        transition: all .3s;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
                 }
             }

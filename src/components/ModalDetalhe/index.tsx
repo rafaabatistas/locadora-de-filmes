@@ -57,6 +57,24 @@ export function Modal({ filme, isOpen, handleClose }: Modal) {
                             </tr>
                             <tr>
                                 <td>
+                                    <strong>Legendado:</strong>
+                                </td>
+                                <td>{filme.legendado}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>IMDB:</strong>
+                                </td>
+                                <td><a href={filme.imdb}>Link</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Avaliação:</strong>
+                                </td>
+                                <td>{filme.avaliacao}</td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <strong>Imagem:</strong>
                                 </td>
                                 <td>
