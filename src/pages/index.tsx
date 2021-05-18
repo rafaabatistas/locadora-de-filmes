@@ -7,7 +7,8 @@ import { api } from '../services/api';
 import { Modal } from '../components/ModalDetalhe';
 import { useState } from 'react';
 
-type Filmes = {
+export type Filmes = {
+  id?: number;
   titulo: string;
   genero: string;
   sinopse: string;

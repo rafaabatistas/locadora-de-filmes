@@ -1,5 +1,7 @@
 import styles from '../styles/editar.module.scss';
 
+import type { Filmes } from '../pages/index';
+
 import { ModalDelete } from '../components/ModalDelete';
 import { ModalEdit } from '../components/ModalEdit';
 import { ButtonDeletar } from '../components/ButtonDeletar';
@@ -11,21 +13,12 @@ import { useState } from 'react';
 import { BoxAdicionar } from '../components/BoxAdicionar';
 import { BoxEditar } from '../components/BoxEditar';
 
-type Filmes = {
-  titulo: string;
-  genero: string;
-  sinopse: string;
-  lancamento: string;
-  idioma: string;
-  diretor: string;
-  url: string;
-}
 
-type HomeProps = {
+type EditProps = {
   filmes: Filmes[];
 }
 
-export default function Home({ filmes }: HomeProps) {
+export default function Home({ filmes }: EditProps) {
 const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
 const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
 const [selectedMovie, setSelectedMovie] = useState({

@@ -1,11 +1,13 @@
 import { api } from '../../services/api';
 import { useState, useEffect } from 'react';
 
+import type { Filmes } from '../../pages/index';
+
+import { InputDate } from '../InputDate';
 import { InputText } from '../InputText';
 import { InputTextArea } from '../InputTextArea';
 
 import styles from './styles.module.scss';
-import { InputDate } from '../InputDate';
 
 type Modal = {
     isOpenModalEdit: boolean;
@@ -13,21 +15,6 @@ type Modal = {
     filme: any;
 }
 
-type Edit = {
-    id: number;
-    titulo: string;
-    genero: string;
-    sinopse: string;
-    lancamento: string;
-    idioma: string;
-    diretor: string;
-    url: string;
-}
-
-type EditProps = {
-    id: number;
-    dados: Edit;
-}
 
 export function ModalEdit( { isOpenModalEdit, handleClose, filme }: Modal ) {
     const [selectedEditMovie, setSelectedEditMovie] = useState({
@@ -46,18 +33,15 @@ export function ModalEdit( { isOpenModalEdit, handleClose, filme }: Modal ) {
       }, [filme])
 
 
-     function EditarFilme(id, dados) {
-        const res = api.put(`/locadora/${id}/`, {...dados})
-            .then((res) => {
-                console.log(res.status);
-                handleClose();
-                window.location.reload();
-            }).catch((err) => {
-                console.log(err)
-                handleClose();
-            })
-            console.log(res);
-        }   
+     async function editarFilme(id: Number, dados: Filmes) {
+         try {
+            const res = await api.put(`/locadora/${id}/`, {...dados});
+            handleClose();
+            window.location.reload();
+         } catch (err) {
+            handleClose();
+        }
+    }   
 
     return (
         <>
@@ -120,7 +104,7 @@ export function ModalEdit( { isOpenModalEdit, handleClose, filme }: Modal ) {
                             className={styles.buttonCriar} 
                             type="button" 
                             onClick={() => {
-                                EditarFilme(filme.id, selectedEditMovie)
+                                editarFilme(filme.id, selectedEditMovie)
                         }}>Confimar</button>
                     </div> 
                 </form>
