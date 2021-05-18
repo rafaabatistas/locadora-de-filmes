@@ -59,3 +59,24 @@
     }
 }
 
+@media (max-width: 515px) {
+    
+    .boxModal {
+        top: 100px;
+        width: 400px;
+        height: 500px;
+        margin: 0 auto;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    .boxModal {
+        top: 35px;
+        width: 335px;
+        height: 580px;
+        margin: 0 auto;
+        overflow-y: scroll;
+    }
+}
