@@ -1,8 +1,8 @@
 import { api } from '../../services/api';
 import { useState, useEffect } from 'react';
 
-import { InputText } from '../InputsTexts';
-import { InputTextArea } from '../InputsTextArea';
+import { InputText } from '../InputText';
+import { InputTextArea } from '../InputTextArea';
 
 import styles from './styles.module.scss';
 import { InputDate } from '../InputDate';

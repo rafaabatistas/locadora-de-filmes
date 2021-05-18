@@ -4,7 +4,7 @@ import { Titulo } from '../components/Titulo';
 import { format } from 'date-fns';
 import { GetServerSideProps } from 'next';
 import { api } from '../services/api';
-import { Modal } from '../components/ModalDetalhes';
+import { Modal } from '../components/ModalDetalhe';
 import { useState } from 'react';
 
 type Filmes = {
