@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    border-radius: 0.5rem;
+    border-radius: 5%;
     position: fixed;
     padding: 2rem;
     width: 500px;
@@ -50,7 +50,7 @@
                     border-bottom: 2px solid rgba(97, 97, 97, 0.2);
 
                     p {
-                        word-wrap: break-word;
+                        word-break: break-word;
                     }
                 }
             }
