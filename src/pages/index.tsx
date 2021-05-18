@@ -15,6 +15,9 @@ export type Filmes = {
   lancamento: string;
   idioma: string;
   diretor: string;
+  imdb: string;
+  avaliacao: string;
+  legendado: string;
   url: string;
 }
 
@@ -31,6 +34,9 @@ export default function Home({ filmes }: HomeProps) {
     lancamento: '',
     idioma: '',
     diretor: '',
+    imdb: '',
+    avaliacao: '',
+    legendado: '',
     url: ''
   });
 
@@ -75,6 +81,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
       idioma: filme.idioma,
       diretor: filme.diretor,
       sinopse: filme.sinopse,
+      imdb: filme.imdb,
+      avaliacao: filme.avaliacao,
+      legendado: filme.legendado ? 'Sim' : 'Não',
       url: filme.url
     }
   })
