@@ -83,7 +83,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       sinopse: filme.sinopse,
       imdb: filme.imdb,
       avaliacao: filme.avaliacao,
-      legendado: filme.legendado ? 'Sim' : 'Não',
+      legendado: filme.legendado,
       url: filme.url
     }
   })
