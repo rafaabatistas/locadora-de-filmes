@@ -27,6 +27,9 @@ export function ModalEdit( { isOpenModalEdit, handleClose, filme }: Modal ) {
         lancamento: filme.lancamento,
         idioma: filme.idioma,
         diretor: filme.diretor,
+        imdb: filme.imdb,
+        legendado: filme.legendado,
+        avaliacao: filme.avaliacao,
         url: filme.url
       });
 
