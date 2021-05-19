@@ -11,7 +11,7 @@ export function InputTextArea({children, name, value, inputHandler}: InputProps)
     return (
         <div className={styles.boxInputTextArea}>
             <span>{children}: </span>
-            <textarea onChange={(e) => inputHandler(e.target.value)}  id="sinopse" name={name} value={value} required />
+            <textarea onChange={(e) => inputHandler(e.target.value)} name={name} value={value} required />
         </div>
 )
 }
