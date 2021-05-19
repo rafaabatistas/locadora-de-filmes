@@ -59,7 +59,7 @@ export function Modal({ filme, isOpen, handleClose }: Modal) {
                                 <td>
                                     <strong>Legendado:</strong>
                                 </td>
-                                <td>{filme.legendado}</td>
+                                <td>{filme.legendado === 'true' ? 'Sim' : 'Não'}</td>
                             </tr>
                             <tr>
                                 <td>
