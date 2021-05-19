@@ -38,9 +38,14 @@ export function ModalEdit( { isOpenModalEdit, handleClose, filme }: Modal ) {
       }, [filme])
 
 
+      function onSubmit(e) {
+        e.preventDefault();
+        editarFilme(filme.id, selectedEditMovie);
+    }
+
      async function editarFilme(id: Number, dados: Filmes) {
          try {
-            const res = await api.put(`/locadora/${id}/`, {...dados});
+            await api.put(`/locadora/${id}/`, {...dados});
             handleClose();
             window.location.reload();
          } catch (err) {
