@@ -19,74 +19,74 @@ type EditProps = {
 }
 
 export default function Home({ filmes }: EditProps) {
-const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
-const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
-const [selectedMovie, setSelectedMovie] = useState({
-  titulo: '',
-  genero: '',
-  sinopse: '',
-  lancamento: '',
-  idioma: '',
-  diretor: '',
-  imdb: '',
-  avaliacao:  '',
-  legendado: '',
-  url: '',
-});
+    const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
+    const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
+    const [selectedMovie, setSelectedMovie] = useState({
+        titulo: '',
+        genero: '',
+        sinopse: '',
+        lancamento: '',
+        idioma: '',
+        diretor: '',
+        imdb: '',
+        avaliacao:  '',
+        legendado: '',
+        url: '',
+    });
 
-  return (
-    <main className={styles.containerHome}>
-      <Titulo>Editar os filmes locados</Titulo>
-      <section className={styles.containerFilmes}>
-        <BoxAdicionar list={filmes}/>
-        {filmes.map((filme) => {
-          return (
-            <section className={styles.boxEditar} key={filme.id}>
-              <BoxEditar filme={filme} index={filme.id}>
-                <div className={styles.boxButtonsEdit} onClick={() => {
-                  setIsOpenModalEdit(true)
-                  setSelectedMovie(filme)}}>
-                  <ButtonEditar />
-                </div>
-                <div className={styles.boxButtonsDelete} onClick={() => {
-                  setIsOpenModalDelete(true);
-                  setSelectedMovie(filme)
-                }}>
-                  <ButtonDeletar />
-                </div>
-              </BoxEditar>
+    return (
+        <main className={styles.containerHome}>
+            <Titulo>Editar os filmes locados</Titulo>
+            <section className={styles.containerFilmes}>
+                <BoxAdicionar list={filmes} />
+                {filmes.map((filme) => {
+                return (
+                    <section className={styles.boxEditar} key={filme.id}>
+                        <BoxEditar filme={filme} index={filme.id}>
+                            <div className={styles.boxButtonsEdit} onClick={() => {
+                                setIsOpenModalEdit(true)
+                                setSelectedMovie(filme)}}>
+                                <ButtonEditar />
+                            </div>
+                            <div className={styles.boxButtonsDelete} onClick={() => {
+                                setIsOpenModalDelete(true);
+                                setSelectedMovie(filme)
+                                }}>
+                                <ButtonDeletar />
+                            </div>
+                        </BoxEditar>
+                    </section>
+                )
+                })}
+                <ModalEdit filme={selectedMovie} isOpenModalEdit={isOpenModalEdit} handleClose={() => setIsOpenModalEdit(!open)}/>
+                <ModalDelete filme={selectedMovie} isOpenModalDelete={isOpenModalDelete} handleClose={() => setIsOpenModalDelete(!open)}/>
             </section>
-          )
-        })}
-        <ModalEdit filme={selectedMovie} isOpenModalEdit={isOpenModalEdit} handleClose={() => setIsOpenModalEdit(!open)}/>
-        <ModalDelete filme={selectedMovie} isOpenModalDelete={isOpenModalDelete} handleClose={() => setIsOpenModalDelete(!open)}/>
-      </section>
-    </main>
+        </main>
     )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await api.get('locadora?_order=desc');
+    const { data } = await api.get('locadora?_order=desc');
 
-  const filmes = data.map(filme => {
-    return {
-      id: filme.id, 
-      titulo: filme.titulo,
-      genero: filme.genero,
-      lancamento: filme.lancamento,
-      idioma: filme.idioma,
-      diretor: filme.diretor,
-      sinopse: filme.sinopse,
-      imdb: filme.imdb,
-      avaliacao: filme.avaliacao,
-      legendado: filme.legendado,
-      url: filme.url
-    }
-  })
+    const filmes = data.map(filme => {
+        return {
+            id: filme.id, 
+            titulo: filme.titulo,
+            genero: filme.genero,
+            lancamento: filme.lancamento,
+            idioma: filme.idioma,
+            diretor: filme.diretor,
+            sinopse: filme.sinopse,
+            imdb: filme.imdb,
+            avaliacao: filme.avaliacao,
+            legendado: filme.legendado,
+            url: filme.url
+        }
+    })
   
-  return {
-    props: {
-      filmes
+    return {
+        props: {
+        filmes
+        }
     }
-  }
 }
