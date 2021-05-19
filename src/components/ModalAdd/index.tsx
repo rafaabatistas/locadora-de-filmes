@@ -3,7 +3,6 @@ import { api } from '../../services/api';
 import { InputText } from '../InputText';
 import { InputTextArea } from '../InputTextArea';
 
-
 import styles from './styles.module.scss';
 import { useState } from 'react';
 import { ModalInput } from '../ModalInput';
@@ -12,7 +11,7 @@ import { InputRadio } from '../InputRadio';
 
 type Modal = {
     isOpen: boolean;
-    handleClose: any;
+    handleClose: () => void;
     movieList: any;
 }
 
@@ -25,38 +24,40 @@ export function ModalAdd( { isOpen, handleClose, movieList }: Modal ) {
         lancamento: '',
         idioma: '',
         diretor: '',
+        imdb: '',
+        avaliacao: '',
+        legendado: 'true',
         url: ''
     })
 
 
+    function onSubmit(e) {
+        e.preventDefault();
+        adicionarFilme();
+    }
 
-    async function AdicionarFilme() {
-        movieList.push(addMovie);
-        console.log(movieList);
-        const res = await api.post(`/locadora/`, {...addMovie})
-            .then((res) => {
-                console.log(res.status);
-                handleClose();
-                window.location.reload();
-            }).catch((err) => {
-                console.log(err)
-                handleClose();
-            })
-            console.log(res);
+    async function adicionarFilme() {
+        try { 
+            movieList.push(addMovie);
+            await api.post(`/locadora/`, {...addMovie})
+            handleClose();
+            window.location.reload();
+        } catch (err) {
+            console.log(err)
+            handleClose();
+        }
     }
 
     return (
         <ModalInput isOpenModal={isOpen} handleClose={handleClose} title={'Adicionar'}>
             <form onSubmit={(e) => onSubmit(e)}>
                 <InputText 
-                        children={'Título'}
                     name={'titulo'}
                     isRequired={true}
                     value={addMovie.titulo}
                     inputHandler={(e) => {setAddMovie({...addMovie, ['titulo']: e})}}
                 >Título</InputText>
                 <InputText 
-                        children={'Gênero'}
                     name={'genero'}
                     isRequired={true}
                     value={addMovie.genero}
@@ -74,7 +75,6 @@ export function ModalAdd( { isOpen, handleClose, movieList }: Modal ) {
                     inputHandler={(e) => {setAddMovie({...addMovie, ['idioma']: e})}}
                     >Idioma</InputText>
                 <InputText 
-                        children={'Diretor'}
                     name={'diretor'}
                     isRequired={false}
                     value={addMovie.diretor}
@@ -104,7 +104,6 @@ export function ModalAdd( { isOpen, handleClose, movieList }: Modal ) {
                     inputHandler={(e) => {setAddMovie({...addMovie, ['url']: e})}}
                     >URL</InputText>                    
                 <InputTextArea 
-                        children={'Sinopse'}
                     name={'sinopse'}
                     value={addMovie.sinopse}
                     inputHandler={(e) => {setAddMovie({...addMovie, ['sinopse']: e})}}
