@@ -28,7 +28,10 @@ const [selectedMovie, setSelectedMovie] = useState({
   lancamento: '',
   idioma: '',
   diretor: '',
-  url: ''
+  imdb: '',
+  avaliacao:  '',
+  legendado: '',
+  url: '',
 });
 
   return (
@@ -36,10 +39,10 @@ const [selectedMovie, setSelectedMovie] = useState({
       <Titulo>Editar os filmes locados</Titulo>
       <section className={styles.containerFilmes}>
         <BoxAdicionar list={filmes}/>
-        {filmes.map((filme, index) => {
+        {filmes.map((filme) => {
           return (
-            <section className={styles.boxEditar} key={index}>
-              <BoxEditar filme={filme} index={index}>
+            <section className={styles.boxEditar} key={filme.id}>
+              <BoxEditar filme={filme} index={filme.id}>
                 <div className={styles.boxButtonsEdit} onClick={() => {
                   setIsOpenModalEdit(true)
                   setSelectedMovie(filme)}}>
@@ -74,6 +77,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
       idioma: filme.idioma,
       diretor: filme.diretor,
       sinopse: filme.sinopse,
+      imdb: filme.imdb,
+      avaliacao: filme.avaliacao,
+      legendado: filme.legendado,
       url: filme.url
     }
   })
