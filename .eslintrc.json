@@ -10,13 +10,13 @@
     },
     "parser": "@typescript-eslint/parser",
     "extends": [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:react/recommended",
-        "plugin:prettier/recommended",
-        "eslint:recommended",
-        "plugin:css-modules/recommended",
-        "plugin:css-modules/recommended"
+      "plugin:react/recommended",
+      "plugin:prettier/recommended",
+      "eslint:recommended",
+      "plugin:css-modules/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:css-modules/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
