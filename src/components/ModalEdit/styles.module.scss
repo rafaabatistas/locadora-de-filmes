@@ -1,13 +1,3 @@
-.contentBackground {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1;
-}
-
 .boxButtonCriar {
     width: 100%;
     height: 10rem;
@@ -34,27 +24,5 @@
             background: var(--purple);
             color: white;
         }
-    }
-}
-
-@media (max-width: 515px) {
-    
-    .boxModal {
-        top: 100px;
-        width: 400px;
-        height: 500px;
-        margin: 0 auto;
-        overflow-y: scroll;
-    }
-}
-
-@media (max-width: 480px) {
-    
-    .boxModal {
-        top: 35px;
-        width: 335px;
-        height: 580px;
-        margin: 0 auto;
-        overflow-y: scroll;
     }
 }
