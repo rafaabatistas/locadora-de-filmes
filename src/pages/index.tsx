@@ -1,6 +1,8 @@
 import styles from '../styles/home.module.scss';
 
 import { Titulo } from '../components/Titulo';
+import { useContext, useEffect } from 'react';
+import { MovieContext } from '../contexts/MovieContext';
 import { format } from 'date-fns';
 import { GetServerSideProps } from 'next';
 import { api } from '../services/api';
@@ -26,6 +28,7 @@ type HomeProps = {
 };
 
 export default function Home({ filmes }: HomeProps) {
+  const { setMoviesList, moviesList } = useContext(MovieContext);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({
     titulo: '',
@@ -40,9 +43,14 @@ export default function Home({ filmes }: HomeProps) {
     url: '',
   });
 
+  useEffect(() => {
+    setMoviesList(filmes);
+  }, [])
+
   return (
     <main className={styles.containerHome}>
       <Titulo>Todos os filmes locados</Titulo>
+      {console.log(moviesList)}
       <section className={styles.containerFilmes}>
         {filmes.map((filme, index) => {
           return (
