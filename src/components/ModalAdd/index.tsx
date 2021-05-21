@@ -6,7 +6,8 @@ import { InputText } from '../InputText';
 import { InputTextArea } from '../InputTextArea';
 
 import styles from './styles.module.scss';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { MovieContext } from '../../contexts/MovieContext';
 import { ModalInput } from '../ModalInput';
 import { InputDate } from '../InputDate';
 import { InputRadio } from '../InputRadio';
@@ -18,6 +19,7 @@ type Modal = {
 };
 
 export function ModalAdd({ isOpen, handleClose, movieList }: Modal) {
+  const { setMoviesList, moviesList } = useContext(MovieContext);
   const [addMovie, setAddMovie] = useState({
     id: movieList.length,
     titulo: '',
@@ -38,11 +40,12 @@ export function ModalAdd({ isOpen, handleClose, movieList }: Modal) {
   }
 
   async function adicionarFilme() {
+    const newMovies = moviesList;
+    newMovies.push(addMovie);
     try {
-      movieList.push(addMovie);
       await api.post(`/locadora/`, { ...addMovie });
+      setMoviesList(newMovies);
       handleClose();
-      window.location.reload();
     } catch (err) {
       console.log(err);
       handleClose();
