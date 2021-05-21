@@ -45,17 +45,16 @@ export default function Home({ filmes }: HomeProps) {
 
   useEffect(() => {
     setMoviesList(filmes);
-  }, [])
+  }, [setMoviesList, filmes, moviesList]);
 
   return (
     <main className={styles.containerHome}>
       <Titulo>Todos os filmes locados</Titulo>
-      {console.log(moviesList)}
       <section className={styles.containerFilmes}>
-        {filmes.map((filme, index) => {
+        {moviesList.map((filme) => {
           return (
             <div
-              key={index}
+              key={filme.id}
               className={styles.boxFilmes}
               onClick={() => {
                 setIsOpen(true);
@@ -75,7 +74,7 @@ export default function Home({ filmes }: HomeProps) {
         <Modal
           filme={selectedMovie}
           isOpen={isOpen}
-          handleClose={() => setIsOpen(!open)}
+          handleClose={() => setIsOpen(!isOpen)}
         />
       </section>
     </main>

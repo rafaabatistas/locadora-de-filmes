@@ -1,8 +1,9 @@
 import styles from '../styles/editar.module.scss';
-
+import { useContext, useEffect } from 'react';
 import type { Filmes } from '../pages/index';
 
 import { ModalDelete } from '../components/ModalDelete';
+import { MovieContext } from '../contexts/MovieContext';
 import { ModalEdit } from '../components/ModalEdit';
 import { ButtonDeletar } from '../components/ButtonDeletar';
 import { ButtonEditar } from '../components/ButtonEditar';
@@ -18,6 +19,7 @@ type EditProps = {
 };
 
 export default function Home({ filmes }: EditProps) {
+  const { setMoviesList, moviesList } = useContext(MovieContext);
   const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({
@@ -33,12 +35,16 @@ export default function Home({ filmes }: EditProps) {
     url: '',
   });
 
+  useEffect(() => {
+    setMoviesList(filmes);
+  }, [setMoviesList, filmes, moviesList.length]);
+
   return (
     <main className={styles.containerHome}>
       <Titulo>Editar os filmes locados</Titulo>
       <section className={styles.containerFilmes}>
-        <BoxAdicionar list={filmes} />
-        {filmes.map((filme) => {
+        <BoxAdicionar list={moviesList} />
+        {moviesList.map((filme) => {
           return (
             <section className={styles.boxEditar} key={filme.id}>
               <BoxEditar filme={filme} index={filme.id}>
