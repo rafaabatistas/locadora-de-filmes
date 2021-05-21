@@ -29,7 +29,7 @@ export function BoxAdicionar({ list }: ListProps) {
       </div>
       <ModalAdd
         isOpen={isOpen}
-        handleClose={() => setIsOpen(!open)}
+        handleClose={() => setIsOpen(!isOpen)}
         movieList={list}
       />
     </>
