@@ -1,7 +1,5 @@
 import { api } from '../../services/api';
 
-import type { Filmes } from '../../pages/index';
-
 import { InputText } from '../InputText';
 import { InputTextArea } from '../InputTextArea';
 
@@ -15,13 +13,12 @@ import { InputRadio } from '../InputRadio';
 type Modal = {
   isOpen: boolean;
   handleClose: () => void;
-  movieList: Filmes[];
 };
 
-export function ModalAdd({ isOpen, handleClose, movieList }: Modal) {
+export function ModalAdd({ isOpen, handleClose }: Modal) {
   const { setMoviesList, moviesList } = useContext(MovieContext);
   const [addMovie, setAddMovie] = useState({
-    id: movieList.length,
+    id: 0,
     titulo: '',
     genero: '',
     sinopse: '',
@@ -40,11 +37,12 @@ export function ModalAdd({ isOpen, handleClose, movieList }: Modal) {
   }
 
   async function adicionarFilme() {
+    setAddMovie({ ...addMovie, id: moviesList.length });
     const newMovies = moviesList;
     newMovies.push(addMovie);
     try {
       await api.post(`/locadora/`, { ...addMovie });
-      setMoviesList(newMovies);
+      setMoviesList([...newMovies]);
       handleClose();
     } catch (err) {
       console.log(err);
