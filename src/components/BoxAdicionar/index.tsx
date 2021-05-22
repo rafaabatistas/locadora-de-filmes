@@ -1,15 +1,9 @@
 import styles from './styles.module.scss';
 
-import type { Filmes } from '../../pages/index';
-
 import { ModalAdd } from '../ModalAdd';
 import { useState } from 'react';
 
-type ListProps = {
-  list: Filmes[];
-};
-
-export function BoxAdicionar({ list }: ListProps) {
+export function BoxAdicionar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -27,11 +21,7 @@ export function BoxAdicionar({ list }: ListProps) {
         </div>
         <h2>Adicionar Filme</h2>
       </div>
-      <ModalAdd
-        isOpen={isOpen}
-        handleClose={() => setIsOpen(!isOpen)}
-        movieList={list}
-      />
+      <ModalAdd isOpen={isOpen} handleClose={() => setIsOpen(!isOpen)} />
     </>
   );
 }
