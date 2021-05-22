@@ -1,5 +1,6 @@
 import styles from './styles.module.scss';
-
+import { useContext } from 'react';
+import { MovieContext } from '../../contexts/MovieContext';
 import type { Filmes } from '../../pages/index';
 
 import { api } from '../../services/api';
@@ -15,19 +16,18 @@ export function ModalDelete({
   handleClose,
   isOpenModalDelete,
 }: DeleteProps) {
-  function removerFilme(id) {
-    const res = api
-      .delete(`/locadora/${id}`)
-      .then((res) => {
-        console.log(res.status);
-        handleClose();
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-        handleClose();
-      });
-    console.log(res);
+  const { setMoviesList, moviesList } = useContext(MovieContext);
+
+  async function removerFilme(id) {
+    const newMovies = moviesList.filter((filme) => filme.id !== id);
+    try {
+      await api.delete(`/locadora/${id}`);
+      setMoviesList([...newMovies]);
+      handleClose();
+    } catch (err) {
+      console.log(err);
+      handleClose();
+    }
   }
 
   return (
