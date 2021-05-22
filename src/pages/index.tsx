@@ -86,6 +86,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   const filmes = data.map((filme) => {
     return {
+      id: filme.id,
       titulo: filme.titulo,
       genero: filme.genero,
       lancamento: format(new Date(filme.lancamento), 'yyy'),
