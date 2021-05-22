@@ -37,13 +37,13 @@ export default function Home({ filmes }: EditProps) {
 
   useEffect(() => {
     setMoviesList(filmes);
-  }, [setMoviesList, filmes, moviesList.length]);
+  }, [setMoviesList, filmes]);
 
   return (
     <main className={styles.containerHome}>
       <Titulo>Editar os filmes locados</Titulo>
       <section className={styles.containerFilmes}>
-        <BoxAdicionar list={moviesList} />
+        <BoxAdicionar />
         {moviesList.map((filme) => {
           return (
             <section className={styles.boxEditar} key={filme.id}>
