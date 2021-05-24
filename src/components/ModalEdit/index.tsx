@@ -1,5 +1,6 @@
 import { api } from '../../services/api';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { MovieContext } from '../../contexts/MovieContext';
 
 import type { Filmes } from '../../pages/index';
 
@@ -12,6 +13,7 @@ import { InputTextArea } from '../InputTextArea';
 import styles from './styles.module.scss';
 
 export function ModalEdit({ isOpenModalEdit, handleClose, filme }) {
+  const { setMoviesList, moviesList } = useContext(MovieContext);
   const [selectedEditMovie, setSelectedEditMovie] = useState({
     id: filme.id,
     titulo: filme.titulo,
@@ -36,10 +38,18 @@ export function ModalEdit({ isOpenModalEdit, handleClose, filme }) {
   }
 
   async function editarFilme(id: number, dados: Filmes) {
+    const newMovies = moviesList.map((movie) => {
+      if (movie.id === id) {
+        return (movie = { ...selectedEditMovie });
+      } else {
+        return movie;
+      }
+    });
+    console.log(newMovies);
     try {
       await api.put(`/locadora/${id}/`, { ...dados });
+      setMoviesList([...newMovies]);
       handleClose();
-      window.location.reload();
     } catch (err) {
       handleClose();
     }
