@@ -10,8 +10,9 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;1,700&display=swap"
             rel="stylesheet"
           />
+          <link rel="shortcut icon" href="/popcorn.png" type="image/x-icon" />
+          <title>Locadora de Filmes</title>
         </Head>
-        <title>Locadora de Filmes</title>
         <body>
           <Main />
           <NextScript />
