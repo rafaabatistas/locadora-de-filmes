@@ -23,7 +23,7 @@ export function Modal({ filme, isOpen, handleClose }: ModalProps) {
       >
         <div className={styles.boxButtonFechar}>
           <button className={styles.buttonFechar} onClick={handleClose}>
-            <img src="./close.svg" alt="Botão de fechar" />
+            <img src="/close.svg" alt="Botão de fechar" />
           </button>
         </div>
 
