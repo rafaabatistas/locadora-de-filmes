@@ -11,7 +11,6 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
           <link rel="shortcut icon" href="/popcorn.png" type="image/x-icon" />
-          <title>Locadora de Filmes</title>
         </Head>
         <body>
           <Main />
