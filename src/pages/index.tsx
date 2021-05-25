@@ -1,5 +1,7 @@
 import styles from '../styles/home.module.scss';
 
+import type { Filmes } from '../types/type-filmes';
+
 import { Titulo } from '../components/Titulo';
 import { useContext, useEffect } from 'react';
 import { MovieContext } from '../contexts/MovieContext';
@@ -8,20 +10,6 @@ import { GetServerSideProps } from 'next';
 import { api } from '../services/api';
 import { Modal } from '../components/ModalDetalhe';
 import { useState } from 'react';
-
-export type Filmes = {
-  id?: number;
-  titulo: string;
-  genero: string;
-  sinopse: string;
-  lancamento: string;
-  idioma: string;
-  diretor: string;
-  imdb: string;
-  avaliacao: string;
-  legendado: string;
-  url: string;
-};
 
 type HomeProps = {
   filmes: Filmes[];

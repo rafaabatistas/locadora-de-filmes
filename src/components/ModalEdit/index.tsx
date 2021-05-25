@@ -2,7 +2,7 @@ import { api } from '../../services/api';
 import { useState, useEffect, useContext } from 'react';
 import { MovieContext } from '../../contexts/MovieContext';
 
-import type { Filmes } from '../../pages/index';
+import type { Filmes } from '../../types/type-filmes';
 
 import { InputRadio } from '../InputRadio';
 import { ModalInput } from '../ModalInput';

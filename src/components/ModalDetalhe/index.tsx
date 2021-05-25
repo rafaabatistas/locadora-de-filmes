@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-import type { Filmes } from '../../pages/index';
+import type { Filmes } from '../../types/type-filmes';
 
 type ModalProps = {
   isOpen: boolean;

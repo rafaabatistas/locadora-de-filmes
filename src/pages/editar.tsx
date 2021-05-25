@@ -1,6 +1,7 @@
 import styles from '../styles/editar.module.scss';
 import { useContext, useEffect } from 'react';
-import type { Filmes } from '../pages/index';
+
+import type { Filmes } from '../types/type-filmes';
 
 import { ModalDelete } from '../components/ModalDelete';
 import { MovieContext } from '../contexts/MovieContext';
