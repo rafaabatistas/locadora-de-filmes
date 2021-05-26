@@ -72,12 +72,20 @@ export default function Home({ filmes }: HomeProps) {
 export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await api.get('locadora?_order=desc');
 
-  const filmes = data.map((filme) => {
+  const dataLancamento = data.map((filme) => {
+    if (filme.lancamento !== '') {
+      return format(new Date(filme.lancamento), 'yyy');
+    } else {
+      return format(new Date(), 'yyy');
+    }
+  });
+
+  const filmes = data.map((filme, index) => {
     return {
       id: filme.id,
       titulo: filme.titulo,
       genero: filme.genero,
-      lancamento: format(new Date(filme.lancamento), 'yyy'),
+      lancamento: dataLancamento[index],
       idioma: filme.idioma,
       diretor: filme.diretor,
       sinopse: filme.sinopse,
