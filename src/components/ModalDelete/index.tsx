@@ -1,13 +1,19 @@
 import styles from './styles.module.scss';
-import { useContext } from 'react';
+
+import { useState, useContext } from 'react';
 import { MovieContext } from '../../contexts/MovieContext';
-import type { Filmes } from '../../pages/index';
+
+import type { Filmes } from '../../types/type-filmes';
+
+import { MessageSuccess } from '../MessageSuccess';
+import { MessageError } from '../MessageError';
 
 import { api } from '../../services/api';
 
-type DeleteProps = {
+export type DeleteProps = {
   isOpenModalDelete: boolean;
-  filme: Filmes;
+  status?: string;
+  filme?: Filmes;
   handleClose: () => void;
 };
 
@@ -17,6 +23,8 @@ export function ModalDelete({
   isOpenModalDelete,
 }: DeleteProps) {
   const { setMoviesList, moviesList } = useContext(MovieContext);
+  const [openMesageSuccess, setOpenMesageSuccess] = useState(false);
+  const [openMesageError, setOpenMesageError] = useState(false);
 
   async function removerFilme(id) {
     const newMovies = moviesList.filter((filme) => filme.id !== id);
@@ -24,9 +32,10 @@ export function ModalDelete({
       await api.delete(`/locadora/${id}`);
       setMoviesList([...newMovies]);
       handleClose();
+      setOpenMesageSuccess(true);
     } catch (err) {
-      console.log(err);
       handleClose();
+      setOpenMesageError(true);
     }
   }
 
@@ -45,12 +54,23 @@ export function ModalDelete({
             <img src="./close.svg" alt="Botão de fechar" />
           </button>
         </div>
-        <h2>Quer mesmo deletar o filme</h2>
+        <h2>Quer mesmo deletar esse filme:</h2>
         <p>{filme.titulo}</p>
         <button type="button" onClick={() => removerFilme(filme.id)}>
           Deletar
         </button>
       </section>
+
+      <MessageSuccess
+        handleClose={() => setOpenMesageSuccess(false)}
+        isOpenModalDelete={openMesageSuccess}
+        status={'deletado'}
+        filme={filme}
+      />
+      <MessageError
+        handleClose={() => setOpenMesageError(false)}
+        isOpenModalDelete={openMesageError}
+      />
     </>
   );
 }
