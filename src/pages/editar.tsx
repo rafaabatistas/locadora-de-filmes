@@ -74,12 +74,12 @@ export default function Home({ filmes }: EditProps) {
         <ModalEdit
           filme={selectedMovie}
           isOpenModalEdit={isOpenModalEdit}
-          handleClose={() => setIsOpenModalEdit(!open)}
+          handleClose={() => setIsOpenModalEdit(false)}
         />
         <ModalDelete
           filme={selectedMovie}
           isOpenModalDelete={isOpenModalDelete}
-          handleClose={() => setIsOpenModalDelete(!open)}
+          handleClose={() => setIsOpenModalDelete(false)}
         />
       </section>
     </main>
