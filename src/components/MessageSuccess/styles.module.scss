@@ -1,0 +1,82 @@
+.contentBackground {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  animation: OpacityBoxModal 0.8s ease-in-out;
+}
+
+.boxModal {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  width: 440px;
+  min-width: 200px;
+  height: auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 5%;
+  font-family: Newsreader, sans-serif;
+  text-align: center;
+  animation: OpacityBoxModal 0.8s ease-in-out;
+
+  h2 {
+      margin: 2rem;
+      font-weight: 500;
+  }
+
+  button {
+      width: 9rem;
+      height: 4rem;
+      border-style: none;
+      background: transparent;
+      border-radius: 0.5rem;
+      border: 1px solid var(--pink);
+      font-family: Newsreader, sans-serif;
+      font-weight: 500;
+      font-size: 1.8rem;
+      color: var(--pink);
+      transition: all .3s;
+      
+      &:hover {
+          background: var(--purple);
+          color: white;
+      }
+  }
+
+  .ContentAnimation {
+    pointer-events: none;
+  }
+
+  @keyframes OpacityBoxModal {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 515px) {
+  
+  .boxModal {
+      top: 200px;
+      width: 400px;
+      margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .boxModal {
+      top: 200px;
+      width: 335px;
+      margin: 0 auto;
+  }
+}
