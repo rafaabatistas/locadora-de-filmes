@@ -1,14 +1,16 @@
-import { api } from '../../services/api';
+import styles from './styles.module.scss';
 
+import { InputDate } from '../InputDate';
 import { InputText } from '../InputText';
+import { InputRadio } from '../InputRadio';
+import { ModalInput } from '../ModalInput';
 import { InputTextArea } from '../InputTextArea';
 
-import styles from './styles.module.scss';
+import { api } from '../../services/api';
+import { CriarHash } from '../../services/hash';
+
 import { useState, useContext } from 'react';
 import { MovieContext } from '../../contexts/MovieContext';
-import { ModalInput } from '../ModalInput';
-import { InputDate } from '../InputDate';
-import { InputRadio } from '../InputRadio';
 
 type Modal = {
   isOpen: boolean;
@@ -18,7 +20,7 @@ type Modal = {
 export function ModalAdd({ isOpen, handleClose }: Modal) {
   const { setMoviesList, moviesList } = useContext(MovieContext);
   const [addMovie, setAddMovie] = useState({
-    id: 0,
+    id: CriarHash(),
     titulo: '',
     genero: '',
     sinopse: '',
@@ -37,15 +39,28 @@ export function ModalAdd({ isOpen, handleClose }: Modal) {
   }
 
   async function adicionarFilme() {
-    setAddMovie({ ...addMovie, id: moviesList.length });
+    setAddMovie({ ...addMovie });
     const newMovies = moviesList;
-    newMovies.push(addMovie);
+    newMovies.push({ ...addMovie });
+    console.log(newMovies);
     try {
       await api.post(`/locadora/`, { ...addMovie });
       setMoviesList([...newMovies]);
+      setAddMovie({
+        id: CriarHash(),
+        titulo: '',
+        genero: '',
+        sinopse: '',
+        lancamento: '',
+        idioma: '',
+        diretor: '',
+        imdb: '',
+        avaliacao: '',
+        legendado: 'true',
+        url: '',
+      });
       handleClose();
     } catch (err) {
-      console.log(err);
       handleClose();
     }
   }
