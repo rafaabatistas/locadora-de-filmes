@@ -37,7 +37,7 @@ export function ModalEdit({ isOpenModalEdit, handleClose, filme }) {
     editarFilme(filme.id, selectedEditMovie);
   }
 
-  async function editarFilme(id: number, dados: Filmes) {
+  async function editarFilme(id: string, dados: Filmes) {
     const newMovies = moviesList.map((movie) => {
       if (movie.id === id) {
         return (movie = { ...selectedEditMovie });
