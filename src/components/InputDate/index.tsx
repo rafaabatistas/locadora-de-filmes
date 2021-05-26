@@ -18,7 +18,6 @@ export function InputDate({ children, name, value, inputHandler }: InputProps) {
         type="date"
         name={name}
         value={value}
-        required
       />
     </div>
   );
