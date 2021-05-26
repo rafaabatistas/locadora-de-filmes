@@ -1,7 +1,7 @@
 {
   "locadora": [
     {
-      "id": 0,
+      "id": "5405ade0-10a2-fc5c-6fba-c07ff4a8b197",
       "titulo": "Interestelar",
       "genero": "Ficção científica/Aventura",
       "lancamento": "2014-11-06",
@@ -14,7 +14,7 @@
       "url": "https://i2.wp.com/astropt.org/blog/wp-content/uploads/2013/12/interstellar-christopher-nolan-poster.jpg"
     },
     {
-      "id": 1,
+      "id": "08363beb-e8a1-92a3-d784-0a5fa5914979",
       "titulo": "Vingadores: Ultimato",
       "genero": "Ação/Ficção científica",
       "lancamento": "2018-04-26",
@@ -27,7 +27,7 @@
       "url": "https://i.pinimg.com/564x/1e/51/69/1e5169f21b80786a87abb6059a9f3abd.jpg"
     },
     {
-      "id": 2,
+      "id": "f6a4b305-8c48-cc02-9992-a8335261c4cf",
       "titulo": "Dragon Ball Super",
       "genero": " Ação/Fantasia",
       "lancamento": "2019-01-03",
@@ -40,7 +40,7 @@
       "url": "http://www.itaguari.com.br/wp-content/uploads/2019/01/Dragon-Ball-Super-Broly-633x1024.jpg"
     },
     {
-      "id": 3,
+      "id": "f6a4b305-8c48-dc02-9992-b8335261c4ce",
       "titulo": "Homem Aranha",
       "genero": "Ação/Aventura",
       "sinopse": "When bitten by a genetically modified spider, a nerdy, shy, and awkward high school student gains spider-like abilities that he eventually must use to fight evil as a superhero after tragedy befalls his family.\n EN",
