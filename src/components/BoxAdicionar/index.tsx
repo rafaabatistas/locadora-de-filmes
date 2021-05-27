@@ -1,10 +1,52 @@
 import styles from './styles.module.scss';
 
-import { ModalAdd } from '../ModalAdd';
-import { useState } from 'react';
+import { Modal } from '../Modal';
+import { MovieContext } from '../../contexts/MovieContext';
+import { criarHash } from '../../services/hash';
+import { api } from '../../services/api';
+import { useState, useContext } from 'react';
 
 export function BoxAdicionar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { setMoviesList, moviesList } = useContext(MovieContext);
+  const [newMovie, setNewMovie] = useState({
+    id: criarHash(),
+    titulo: '',
+    genero: '',
+    sinopse: '',
+    lancamento: '',
+    idioma: '',
+    diretor: '',
+    imdb: '',
+    avaliacao: '',
+    legendado: 'true',
+    url: '',
+  });
+
+  async function adicionarFilme(filme) {
+    const newMovies = moviesList;
+    newMovies.push({ ...filme });
+    try {
+      await api.post(`/locadora/`, { ...filme });
+      setMoviesList([...newMovies]);
+      setNewMovie({
+        id: criarHash(),
+        titulo: '',
+        genero: '',
+        sinopse: '',
+        lancamento: '',
+        idioma: '',
+        diretor: '',
+        imdb: '',
+        avaliacao: '',
+        legendado: 'true',
+        url: '',
+      });
+      setIsOpen(false);
+    } catch (err) {
+      setIsOpen(false);
+    }
+  }
 
   return (
     <>
@@ -21,7 +63,13 @@ export function BoxAdicionar() {
         </div>
         <h2>Adicionar Filme</h2>
       </div>
-      <ModalAdd isOpen={isOpen} handleClose={() => setIsOpen(!isOpen)} />
+      <Modal
+        status={'Adicionar'}
+        isOpen={isOpen}
+        filme={newMovie}
+        handleClose={() => setIsOpen(!isOpen)}
+        handleSubmit={(filme) => adicionarFilme(filme)}
+      />
     </>
   );
 }
