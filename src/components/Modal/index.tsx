@@ -1,19 +1,14 @@
-import { api } from '../../services/api';
-import { useState, useEffect, useContext } from 'react';
-import { MovieContext } from '../../contexts/MovieContext';
-
-import type { Filmes } from '../../types/type-filmes';
-
-import { InputRadio } from '../InputRadio';
-import { ModalInput } from '../ModalInput';
-import { InputDate } from '../InputDate';
-import { InputText } from '../InputText';
-import { InputTextArea } from '../InputTextArea';
-
 import styles from './styles.module.scss';
 
-export function ModalEdit({ isOpenModalEdit, handleClose, filme }) {
-  const { setMoviesList, moviesList } = useContext(MovieContext);
+import { useState, useEffect } from 'react';
+
+import { InputDate } from '../InputDate';
+import { InputText } from '../InputText';
+import { ModalInput } from '../ModalInput';
+import { InputRadio } from '../InputRadio';
+import { InputTextArea } from '../InputTextArea';
+
+export function Modal({ isOpen, handleClose, filme, handleSubmit, status }) {
   const [selectedEditMovie, setSelectedEditMovie] = useState({
     id: filme.id,
     titulo: filme.titulo,
@@ -32,36 +27,18 @@ export function ModalEdit({ isOpenModalEdit, handleClose, filme }) {
     setSelectedEditMovie(filme);
   }, [filme]);
 
-  function onSubmit(e) {
-    e.preventDefault();
-    editarFilme(filme.id, selectedEditMovie);
-  }
-
-  async function editarFilme(id: string, dados: Filmes) {
-    const newMovies = moviesList.map((movie) => {
-      if (movie.id === id) {
-        return (movie = { ...selectedEditMovie });
-      } else {
-        return movie;
-      }
-    });
-    console.log(newMovies);
-    try {
-      await api.put(`/locadora/${id}/`, { ...dados });
-      setMoviesList([...newMovies]);
-      handleClose();
-    } catch (err) {
-      handleClose();
-    }
-  }
-
   return (
     <ModalInput
-      isOpenModal={isOpenModalEdit}
+      isOpenModal={isOpen}
       handleClose={handleClose}
       title={selectedEditMovie.titulo}
     >
-      <form onSubmit={(e) => onSubmit(e)}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(selectedEditMovie);
+        }}
+      >
         <InputText
           isRequired={true}
           name="titulo"
@@ -160,7 +137,7 @@ export function ModalEdit({ isOpenModalEdit, handleClose, filme }) {
           Sinopse
         </InputTextArea>
         <div className={styles.boxButtonCriar}>
-          <input className={styles.buttonCriar} type="submit" value="Editar" />
+          <input className={styles.buttonCriar} type="submit" value={status} />
         </div>
       </form>
     </ModalInput>
