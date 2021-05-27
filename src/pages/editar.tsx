@@ -5,7 +5,7 @@ import type { Filmes } from '../types/type-filmes';
 
 import { ModalDelete } from '../components/ModalDelete';
 import { MovieContext } from '../contexts/MovieContext';
-import { ModalEdit } from '../components/ModalEdit';
+import { Modal } from '../components/Modal';
 import { ButtonDeletar } from '../components/ButtonDeletar';
 import { ButtonEditar } from '../components/ButtonEditar';
 import { Titulo } from '../components/Titulo';
@@ -35,6 +35,23 @@ export default function Home({ filmes }: EditProps) {
     legendado: '',
     url: '',
   });
+
+  async function editarFilme(filme: Filmes) {
+    const newMovies = moviesList.map((movie) => {
+      if (movie.id === filme.id) {
+        return (movie = { ...filme });
+      } else {
+        return movie;
+      }
+    });
+    try {
+      await api.put(`/locadora/${filme.id}/`, { ...filme });
+      setMoviesList([...newMovies]);
+      setIsOpenModalEdit(false);
+    } catch (err) {
+      setIsOpenModalEdit(false);
+    }
+  }
 
   useEffect(() => {
     setMoviesList(filmes);
@@ -71,9 +88,11 @@ export default function Home({ filmes }: EditProps) {
             </section>
           );
         })}
-        <ModalEdit
+        <Modal
+          status={'Editar'}
           filme={selectedMovie}
-          isOpenModalEdit={isOpenModalEdit}
+          isOpen={isOpenModalEdit}
+          handleSubmit={(filme) => editarFilme(filme)}
           handleClose={() => setIsOpenModalEdit(false)}
         />
         <ModalDelete
